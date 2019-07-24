@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
+    username: root
+    password: 336699
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      minIdle: 5
+      filter: stat,wall
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      use-global-data-source-stat: true
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+mybatis:
+  type-aliases-package: springboot.bookmanager.pojo
+  mapper-locations: classpath:mapperxml/*Mapper.xml
+  configuration:
+    use-column-label: true
+    map-underscore-to-camel-case: true
+logging:
+  file: D:/springboot.log
+  pattern:
+    console: '%d{yyyy.MM.dd.HH.mm} [%thread]-- %-5level %logger{36} - %msg%n'
+    file: '%d{yyyy.MM.dd.HH.mm} [%thread]-- %-5level %logger{36} - %msg%n'
